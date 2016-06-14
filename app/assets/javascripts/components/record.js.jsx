@@ -1,14 +1,11 @@
 var Record = React.createClass({
-  render() {
-    console.log("Record");
+  render: function() {
     return (
-
-          React.DOM.tr(null,
-            React.DOM.td(null, this.props.record.date),
-            React.DOM.td(null, this.props.record.title),
-            React.DOM.td(null, amountFormat(this.props.record.amount))
-          )
-
-      )
+      <tr>
+        <td>{this.props.record.date}</td>
+        <td>{this.props.record.title}</td>
+        <td>{amountFormat(this.props.record.amount)}</td>
+      </tr>
+    );
   }
 });
