@@ -1,20 +1,24 @@
 
 var Records = React.createClass({
+
   getInitialState: function() {
     return {
       records: this.props.data
     };
   },
+
   getDefaultProps: function() {
     return {
       records: []
     };
   },
+
   returnRecord(record, i){
     return (
       <Record key={i} record={record}/>
     )
   },
+
   render: function() {
     return (
       <div className="records">
