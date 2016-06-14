@@ -9,6 +9,13 @@ var RecordForm = React.createClass({
   },
 
   handleChange: function(e) {
+    var name = e.target.name;
+    var obj = {};
+    obj[name] = e.target.value;
+    this.setState(obj);
+  },
+
+  handleSubmit: function(e) {
     e.preventDefault();
     $.post('',
            { record: this.state },
@@ -19,10 +26,14 @@ var RecordForm = React.createClass({
            'JSON'
     );
   },
-  
+
+  valid: function() {
+    return (this.state.title && this.state.date && this.state.amount);
+  },
+
   render: function() {
     return (
-      <form className="form-inline">
+      <form className="form-inline" onSubmit={this.handleSubmit}>
         <div className="form-group">
           <input type='text' className='form-control'
                  placeholder='Date' name='date'
