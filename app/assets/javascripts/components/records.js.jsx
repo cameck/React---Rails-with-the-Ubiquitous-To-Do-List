@@ -24,7 +24,7 @@ var Records = React.createClass({
     var index = this.state.records.indexOf(record);
     var records = this.state.records;
     records.splice(index, 1);
-    this.replaceState({ records: records });
+    this.setState({ records: records });
   },
 
   addRecord: function(record) {
