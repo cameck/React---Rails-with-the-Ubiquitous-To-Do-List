@@ -15,8 +15,16 @@ var Records = React.createClass({
 
   returnRecord: function(record){
     return (
-      <Record key={record.id} record={record}/>
+      <Record key={record.id} record={record}
+              handleDeleteRecord={this.deleteRecord} />
     )
+  },
+
+  deleteRecord: function(record) {
+    var index = this.state.records.indexOf(record);
+    var records = this.state.records;
+    records.splice(index, 1);
+    this.replaceState({ records: records });
   },
 
   addRecord: function(record) {
@@ -29,7 +37,7 @@ var Records = React.createClass({
     var credits = this.state.records.filter(function(val) {
       return val.amount > 0
     });
-    
+
     return credits.reduce(function(previous, current) {
       return previous + parseFloat(current.amount);
     }, 0)
@@ -65,6 +73,7 @@ var Records = React.createClass({
             <th>Date</th>
             <th>Title</th>
             <th>Amount</th>
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>
