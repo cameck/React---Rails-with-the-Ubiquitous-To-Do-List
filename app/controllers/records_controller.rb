@@ -1,4 +1,5 @@
 class RecordsController < ApplicationController
+
   def index
     @records = Record.all
   end
@@ -11,6 +12,12 @@ class RecordsController < ApplicationController
     else
       render json: @record.errors, status: :unprocessable_entitiy
     end
+  end
+
+  def destroy
+    @record = Record.find(params[:id])
+    @record.destroy
+    head :no_content
   end
 
   private
