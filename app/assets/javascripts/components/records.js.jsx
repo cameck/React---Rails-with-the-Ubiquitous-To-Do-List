@@ -16,8 +16,16 @@ var Records = React.createClass({
   returnRecord: function(record){
     return (
       <Record key={record.id} record={record}
-              handleDeleteRecord={this.deleteRecord} />
+              handleDeleteRecord={this.deleteRecord}
+              handleEditRecord={this.updateRecord} />
     )
+  },
+
+  updateRecord: function(record, data) {
+    var index = this.state.records.indexOf(record);
+    var records = this.state.records;
+    records.splice(index, 1, data);
+    this.setState({ records: records });
   },
 
   deleteRecord: function(record) {

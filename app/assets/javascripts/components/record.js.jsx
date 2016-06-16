@@ -4,6 +4,24 @@ var Record = React.createClass({
     return { edit: false };
   },
 
+  handleEdit: function(e) {
+    e.preventDefault();
+    var data = { title: this.refs.title.value,
+                 date: this.refs.date.value,
+                 amount: this.refs.amount.value
+               };
+    $.ajax({
+      method: 'PUT',
+      url: '/records/' + this.props.record.id,
+      dataType: 'JSON',
+      data: { record: data },
+      success: function() {
+        this.setState({ edit: false });
+        this.props.handleEditRecord(this.props.record, data);
+      }.bind(this)
+    });
+  },
+
   handleDelete: function(e) {
     e.preventDefault();
     $.ajax({
