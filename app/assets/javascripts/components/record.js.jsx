@@ -1,5 +1,9 @@
 var Record = React.createClass({
 
+  getInitialState: function() {
+    return { edit: false };
+  },
+
   handleDelete: function(e) {
     e.preventDefault();
     $.ajax({
@@ -11,7 +15,7 @@ var Record = React.createClass({
       }.bind(this)
     });
   },
-  
+
   render: function() {
     return (
       <tr>
